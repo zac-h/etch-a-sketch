@@ -1,22 +1,28 @@
 const container = document.querySelector('#container');
 
-const defaultSize=16;
+const squareSize=8;
+const gridSize=8;
 
-function setupGrid(size){
-    for(let i=1; i<=size; i++){
-        const divColumn = document.createElement('div');
-        divColumn.classList.add('column');
-        divColumn.classList.add(i);
-        container.appendChild(divColumn);
+//Create squared divs
+function createDiv(size){
+    const div = document.createElement('div');
+    div.classList.add('box');
+    div.style.width = `${size}px`;
+    div.style.height = `${size}px`;
 
-        for(let j=1; j<=size; j++){
-            const divRow = document.createElement('div');
-            divRow.classList.add('row', `column:${i}`, `row:${j}`);
-            divColumn.appendChild(divRow);
-            divRow.addEventListener('mouseenter',function(e){
+    return div;
+}
+
+function createGrid(gridSize){
+    for(let i=0; i<gridSize; i++){
+        for(let j=0; j<gridSize; j++){
+            container.appendChild(createDiv(container.clientWidth / gridSize));
+
+
+            /*div.addEventListener('mouseenter',function(e){
                 e.target.classList.add('hover');
                 //e.target.style.background = 'blue';
-            });
+            });*/
 
 
             /*divRow.addEventListener('mouseleave',function(e){
@@ -44,6 +50,4 @@ btn.addEventListener('click', () =>{
 
 });
 
-window.onload = () => {
-    setupGrid(defaultSize);
-}
+    createGrid(squareSize);
