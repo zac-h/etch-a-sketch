@@ -13,7 +13,19 @@ function setupGrid(size){
             divSquare.classList.add('square');
             divColumn.appendChild(divSquare);
             divSquare.addEventListener('mouseenter',function(e){
-                e.target.classList.add('hover');
+                
+                //increment opacity on hover
+                    let opacity = Number(divSquare.style.backgroundColor.slice(-4, -1));
+                    if(opacity <=0.9){
+                        divSquare.style.backgroundColor = `rgba(0, 0, 0, ${opacity + 0.1})`;
+                    };
+            
+
+                //random color on hover
+                //youtue.target.classList.add('hover');
+                //var color = '#'+Math.floor(Math.random()*16777215).toString(16);
+                //e.target.style.background = color;
+                
             });
         }
     }
