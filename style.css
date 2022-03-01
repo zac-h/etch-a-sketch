@@ -1,20 +1,24 @@
 #container{
+    margin: 0 auto;
+    width: 600px;
+    height: 600px;
     display: flex;
     justify-content: center;
-
 }
 
 .column{
-    align-items: stretch;
+    display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
-.row{
-    flex-basis: auto;
-    height: 50px;
-    width: 50px;
+.square{
+    flex-grow: 1;
+    /*height: 100%;
+    width: 50%;
+    margin: auto;*/
     border-style: solid;
-    border-width: 4px;
+    border-width: 1px;
     border-color: grey;
 }
 
