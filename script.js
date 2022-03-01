@@ -1,5 +1,5 @@
 const container = document.querySelector('#container');
-
+var colorButton = "black";
 const defaultSize=8;
 
 function setupGrid(size){
@@ -12,7 +12,23 @@ function setupGrid(size){
             const divSquare = document.createElement('div');
             divSquare.classList.add('square');
             divColumn.appendChild(divSquare);
-            divSquare.addEventListener('mouseenter',function(e){
+            divSquare.addEventListener('mouseenter',function(){
+                switch (colorButton){
+                    case 'gray':
+                        let opacity = Number(this.style.backgroundColor.slice(-4, -1));
+                        if(opacity <=0.9){
+                            this.style.backgroundColor = `rgba(0, 0, 0, ${opacity + 0.1})`;
+                        };
+                    case 'rainbow':
+                        var color = '#'+Math.floor(Math.random()*16777215).toString(16);
+                        this.style.background = color;
+                    case 'black':
+                        this.classList.add('hover');
+                }
+            });
+            
+            
+            /*divSquare.addEventListener('mouseenter',function(e){
                 
                 //increment opacity on hover
                     let opacity = Number(divSquare.style.backgroundColor.slice(-4, -1));
@@ -22,11 +38,11 @@ function setupGrid(size){
             
 
                 //random color on hover
-                //youtue.target.classList.add('hover');
+                //e.target.classList.add('hover');
                 //var color = '#'+Math.floor(Math.random()*16777215).toString(16);
                 //e.target.style.background = color;
                 
-            });
+            });*/
         }
     }
 }
@@ -37,9 +53,16 @@ function clearGrid(){
     }
 }
 
-const btn = document.querySelector('#btn');
+const resetBtn = document.querySelector('#resetBtn');
+const colorBtns = document.querySelectorAll('.color-choice');
 
-btn.addEventListener('click', () =>{
+colorBtns.forEach(colorBtn => colorBtn.addEventListener('click', (e)=>{
+    colorButton = e.target.dataset.color;
+    console.log(e.target.dataset.color);
+}));
+
+
+resetBtn.addEventListener('click', () =>{
     clearGrid();
     newSize = prompt('Input grid size: ');
     if(newSize>100){
