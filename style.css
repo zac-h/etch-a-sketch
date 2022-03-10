@@ -3,9 +3,6 @@
     width: 600px;
     height: 600px;
     display: flex;
-    flex-flow: row wrap;
-    width: 70rem;
-    height: 70rem;
     justify-content: center;
 }
 
