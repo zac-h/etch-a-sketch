@@ -15,15 +15,30 @@ function setupGrid(size){
             divSquare.addEventListener('mouseenter',function(){
                 switch (colorButton){
                     case 'gray':
-                        let opacity = Number(this.style.backgroundColor.slice(-4, -1));
-                        if(opacity <=0.9){
-                            this.style.backgroundColor = `rgba(0, 0, 0, ${opacity + 0.1})`;
-                        };
+                        if(this.style.backgroundColor.match(/rgba/)){
+                            let opacity = Number(this.style.backgroundColor.slice(-4, -1));
+                            if(opacity <=0.9){
+                                this.style.backgroundColor = `rgba(0, 0, 0, ${opacity + 0.1})`;
+                                this.classList.add('gray');
+                                console.log(this.style.backgroundColor);
+                                console.log(this.classList);
+                            }
+                        }else if(this.classList.contains('gray') && this.style.backgroundColor == 'rgb(0, 0, 0)'){
+                            return;
+                        }else{
+                            console.log('else');
+                            this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+                        }
+                        break;
                     case 'rainbow':
-                        var color = '#'+Math.floor(Math.random()*16777215).toString(16);
-                        this.style.background = color;
+                        this.style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+                        this.classList.remove('gray');
+                        break;
                     case 'black':
+                        this.style.backgroundColor = 'black';
                         this.classList.add('hover');
+                        this.classList.remove('gray');
+                        break;
                 }
             });
             
